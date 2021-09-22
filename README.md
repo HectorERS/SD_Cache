@@ -1,4 +1,5 @@
 # SD_Cache
+#Hector Rios - Christian Tapia - Manuel Tobar
 tarea cache sistema distribuidos
 instalar EXPRESS Y REDIS 
 #npm install express redis
