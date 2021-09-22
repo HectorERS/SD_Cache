@@ -5,12 +5,12 @@ const redis = require('redis');
 // Initialize App
 const app = express();
 var redisClient = redis.createClient({
-  host: 'localhost',
-  port: 6379,
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
   db: 0
 });
 
-redisClient.on('connect', function(){
+redisClient.on('connect', function () {
   console.log('conectado redis');
 });
 // Verificar el cache, redis
@@ -30,19 +30,19 @@ redisClient.on('connect', function(){
 // Assign route
 app.use('/', (req, res, next) => {
   const filters = req.query;
-  const {id} = req.query;
+  const { id } = req.query;
   console.log(id);
-  redisClient.exists(id, function(err, reply){
-    if (reply === 1){
-      redisClient.get(id, function(err, value) {
-      //console.log(value);
-      console.log("fui al cache");
-      res.send(value);
+  redisClient.exists(id, function (err, reply) {
+    if (reply === 1) {
+      redisClient.get(id, function (err, value) {
+        //console.log(value);
+        console.log("fui al cache");
+        res.send(value);
       });
     } else {
       const filteredUsers = data.filter(user => {
         let isValid = true;
-        for (key in filters){
+        for (key in filters) {
           console.log(key, user[key], filters[key]);
           isValid = isValid && user[key] == filters[key];
         };
