@@ -50,6 +50,7 @@ app.use('/', (req, res, next) => {
       });
       console.log(filters);
       console.log("fui al inventario");
+      redisClient.set(id, filteredUsers[0].name);
       res.send(filteredUsers);
     };
   });
