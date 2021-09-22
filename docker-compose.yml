@@ -4,9 +4,9 @@ services:
     searcher-redis:
         container_name: searcher-redis
         image: "redis:alpine"
-        command: redis-server
-        expose:
-            - 6379
+        command: redis-server --maxmemory 20M --maxmemory-policy volatile-lru
+        ports:
+            - "6379:6379"
 
     searcher:
         container_name: searcher
