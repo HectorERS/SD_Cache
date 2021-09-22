@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    searcher-redis:
+        container_name: searcher-redis
+        image: "redis:alpine"
+        command: redis-server
+        expose:
+            - 6379
+
+    searcher:
+        container_name: searcher
+        env_file: .env
+        build:
+            dockerfile: Dockerfile
+            context: ./searcher
+        ports:
+            - "5000:5000"
