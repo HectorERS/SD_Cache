@@ -20,5 +20,5 @@ Consultar "http://localhost:5000?id=2" y va a buscar a cache si esque existe, de
 
 # Using Docker Compose
 
-Run `docker-compose up` to build and run the docker containers
+Run `docker-compose up --build` to build and run the docker containers
 
